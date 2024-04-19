@@ -68,10 +68,37 @@ fn while_loop_statement(){
         a = a + 1;
     }
 }
+fn enum_keyword(){
+ enum Direction {
+    Up,
+    Down,
+    Left, 
+    Right,
+    Middle
+ }
+
+ let go: Direction = Direction::Left;
+ match go {
+    Direction::Up => println!("up"),
+    Direction::Down =>  println!("down"),
+    _ =>  println!("Anything else"),
+ }
+
+ // enums can also contain data
+ // can aslo contain other enum
+ enum Mouse {
+    LeftClick,
+    RightClick,
+    MiddleClick,
+    Scroll(i32),
+    Move(i32, i32)
+ }
+}
 
 fn main() {
     match_expression();
     loop_statement();
     while_loop_statement();
+    enum_keyword();
 }
 
