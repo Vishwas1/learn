@@ -142,6 +142,87 @@ fn tuples_keyword(){
     //     (1, 2, 3)
     // }
 }
+fn expressions(){
+    // expression allows nested logic 
+
+    enum Access {
+        Admin,
+        Manager, 
+        User,
+        Guest
+    }
+
+    // secret files: admin only
+    let access_level = Access::Admin;
+    // here we are assigning expression to a variable
+    let can_access_file = match access_level {
+        Access::Admin => true,
+        _ => false,
+    };
+
+    // here we are using that expression in form of variable
+    println!("Can access secret file - {:?}", can_access_file);
+
+    // -------------
+
+    let my_num = 1;
+    let is_lt_5 = if my_num < 5 {
+        true
+    } else {
+        false
+    };
+
+    let is_lt_5 = my_num < 5; // true/false
+
+
+    let message = match my_num {
+        1 => "hello",
+        _ => "hi"
+    };
+    println!("{message}")
+}
+
+fn owernship(){
+    // Rust uses ownership model for memory management
+    // The "ownwer" of data  must clean up the mempory
+    // The cleanup  occurs automatically at the end of the scope
+    // Default bahaviour is to "move" memory to new onwer in new scope. e.g passing the variable as function param
+    // howeever, we can use "&" to allow code to "borrow" (refernce) memeory
+
+    struct Book {
+        id: i32,
+        pages: i32
+    }
+
+    let book: Book = Book {
+        id : 1,
+        pages: 200
+    };
+
+    // ---------------------------
+    // fn printBookId(book: Book){
+    //     println!("{}", book.id);
+    // }
+    // fn printBookPages(book: Book){
+    //     println!("{}", book.pages);
+    // }
+    // printBookId(book); // this will pass
+    // printBookPages(book); // this shall fail since onwership of `book` is already moved to function `printBookId()`
+   
+    // ---------------------------
+    // hence use `&` 
+    // book is not "moved" but "borrowed" by printBookId()
+    // so ownership of user still remains within scope of `owernship()`
+    fn printBookId(book: &Book){
+        println!("{}", book.id);
+    }
+    fn printBookPages(book: &Book){
+        println!("{}", book.pages);
+    }
+    printBookId(&book);
+    printBookPages(&book);
+}
+
 
 fn main() {
     match_expression();
@@ -150,5 +231,8 @@ fn main() {
     enum_keyword();
     struct_keyword();
     tuples_keyword();
+    expression();
+    ownership();
+
 }
 
