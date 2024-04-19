@@ -50,7 +50,28 @@ fn match_expression(){
 
 }
 
+fn loop_statement(){
+    let mut a = 1;
+    loop {
+        if a == 5 {
+            break;
+        }
+        println!("looping {a}");
+        a = a + 1;
+    }
+}
+
+fn while_loop_statement(){
+    let mut a = 1;
+    while a <= 5 {
+        println!("looping {a}");
+        a = a + 1;
+    }
+}
+
 fn main() {
-    match_expression()
+    match_expression();
+    loop_statement();
+    while_loop_statement();
 }
 
