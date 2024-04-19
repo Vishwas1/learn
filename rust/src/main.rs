@@ -68,6 +68,7 @@ fn while_loop_statement(){
         a = a + 1;
     }
 }
+
 fn enum_keyword(){
  enum Direction {
     Up,
@@ -94,6 +95,7 @@ fn enum_keyword(){
     Move(i32, i32)
  }
 }
+
 fn struct_keyword(){
     enum BoxShape {
         Oval,
@@ -142,6 +144,7 @@ fn tuples_keyword(){
     //     (1, 2, 3)
     // }
 }
+
 fn expressions(){
     // expression allows nested logic 
 
@@ -423,6 +426,7 @@ fn string_type(){
     };
     print_it(&another_employee.name);
 }
+
 fn result_data_type(){
     // enum Result<T, E> {
     //     Ok(T),
