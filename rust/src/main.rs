@@ -332,6 +332,60 @@ fn impl_keyword() {
     small_box.print()
 }
 
+fn vector_keyword() {
+    // vectors allowes to store multple pieces of similar data
+    // use for..in to interate through vector
+    // used for lists of informations 
+    // allows data ot be added , moved etc
+
+    // Declaration
+    let my_numbers1 = vec![1,2,4];
+    // or
+    let mut my_numbers = Vec::new();
+
+    my_numbers.push(1);
+    my_numbers.push(2);
+    my_numbers.push(3);
+    //my_numbers.pop();
+    my_numbers.len();
+
+    // accesssing data
+    // by index
+    let two = my_numbers[1];
+    // by iterations
+    for num in my_numbers{
+        println!("{:?}", num);
+    }
+}
+
+fn vector_demo(){
+    struct Test {
+        score: i32,
+    }
+
+    let my_scores: Vec<Test> = vec![
+        Test { score: 90 }, 
+        Test { score: 88 }, 
+        Test { score: 77 }, 
+    ];
+
+    
+    // itegrating over vector
+    // for score in my_scores {
+    //     println!("{:?}", score.score);
+    // }
+	// Error: now we are trying to access len() but the vairable my_scores has already been "moved" to for loop
+	// println!("lenght {:?}", my_scores.len());
+
+
+    // to fix this we gonna just pass the reference ("borrowed") to/by the for loop
+    for score in &my_scores {
+        println!("{:?}", score.score);
+    }
+    // now it should work
+    println!("lenght {:?}", my_scores.len());
+}
+
 
 fn main() {
     match_expression();
@@ -343,6 +397,7 @@ fn main() {
     expression();
     ownership();
     impl_keyword();
+    vector_keyword();
 
 }
 
