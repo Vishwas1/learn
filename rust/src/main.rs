@@ -94,11 +94,61 @@ fn enum_keyword(){
     Move(i32, i32)
  }
 }
+fn struct_keyword(){
+    enum BoxShape {
+        Oval,
+        Rectangle
+    }
+    struct ShippingBox {
+        depth: i32,
+        width: i32,
+        height: i32,
+        shape: BoxShape,
+    }
+
+    let my_box = ShippingBox {
+        depth: 3,
+        width: 1,
+        height: 1,
+        shape: BoxShape::Rectangle
+    };
+
+    // println!("the box is {:?}", my_box.shape);
+
+    match my_box.shape {
+        BoxShape::Rectangle => println!("box shape Is rectangle"),
+        BoxShape::Oval => println!("box shape Is oval"),
+        _ => println!("box shape is shapeless"),
+    }
+}
+
+fn tuples_keyword(){
+    // a type of record
+    // no need to name fields
+    // can be "destructured" easily into variables
+    // useful to retun pairs of data from function
+    let coord = (2, 3);
+    println!("{:?} , {:?}", coord.0,coord.1);
+
+
+    let (x, y) = coord; 
+    println!("{:?} , {:?}", x,y);
+
+    let user_info = ("Emma", 20);
+    let (name, age) = user_info;
+    println!("Username: {:?} , Age: {:?}", name,age);
+
+    // fn tuples() -> (i32, i32, i32) {
+    //     (1, 2, 3)
+    // }
+}
 
 fn main() {
     match_expression();
     loop_statement();
     while_loop_statement();
     enum_keyword();
+    struct_keyword();
+    tuples_keyword();
 }
 
