@@ -423,6 +423,109 @@ fn string_type(){
     };
     print_it(&another_employee.name);
 }
+fn result_data_type(){
+    // enum Result<T, E> {
+    //     Ok(T),
+    //     Err(E)
+    // }
+
+    #[derive(Debug)]
+    enum MenuChoice {
+        MainMenu,
+        Start,
+        Quit
+    }
+    fn get_choice(input: &str) -> Result<MenuChoice, String> {
+        match input {
+            "mainmenu" => Ok(MenuChoice::MainMenu),
+            "start" => Ok(MenuChoice::Start),
+            "quit" => Ok(MenuChoice::Quit),
+            _ => Err("Invliad menu type".to_owned()),
+        }
+    }
+
+    fn print_choice(choice: &MenuChoice){
+        println!("choice {:?} ", choice)
+    }
+
+
+
+    let choice: Result<MenuChoice, _> = get_choice("1mainmenu");
+    match choice {
+        Ok(inner_choice) => print_choice(&inner_choice),
+        Err(e) => println!("Error: {:?}", e),
+    }
+}
+
+fn hash_map(){
+    use std::collections::HashMap;
+    // store data as key value pairs
+    // 
+
+    let mut people = HashMap::new();
+    people.insert("Susan", 21);
+    people.insert("Vishwas", 22);
+
+    // iterate through all key values in hashmap
+    for (person, age) in people.iter(){
+        println!("Person = {:?}, age = {:?}", person, age);
+    }
+
+    let t = format!("{:?}", people.get("Vishwas"));
+    println!("{:?}", t)
+
+} 
+
+fn traits_keyword(){
+    // traits are basically abstract class
+
+
+    struct NewsArticle {
+        author: String,
+        headline: String,
+        content: String,
+    }
+    impl Summary for NewsArticle {
+        fn summarize(&self) -> String {
+            format!("{}, by {}", self.headline, self.author)
+        }
+    }
+
+    struct Tweet {
+        username: String,
+        content: String,
+        reply: bool,
+        retweet: bool,
+    }
+
+    impl Summary for Tweet {
+        fn summarize(&self) -> String {
+            format!("{}, by {}", self.content, self.username)
+        }
+    }
+
+    trait Summary {
+        fn summarize(&self)-> String;
+    }
+
+
+    let article = NewsArticle {
+        author: "Vishwas".to_owned(),
+        headline: "The sky is Falling".to_owned(),
+        content: String::from("The is not actually Falling")
+    };
+
+    let tweet  = Tweet {
+        username: "Vishwas".to_owned(),
+        content: "Hello, world!".to_owned(),
+        reply: true,
+        retweet: false,
+    };
+
+
+    println!("Article Summary: {}", article.summarize());
+    println!("Tweet Summary: {}", tweet.summarize());
+}
 
 fn main() {
     match_expression();
@@ -436,6 +539,9 @@ fn main() {
     impl_keyword();
     vector_keyword();
     string_type();
+    result_data_type();
+    hash_map();
+    traits_keyword();
 
 }
 
