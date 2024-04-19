@@ -386,6 +386,43 @@ fn vector_demo(){
     println!("lenght {:?}", my_scores.len());
 }
 
+/// Explains about string type
+fn string_type(){
+    // Two commmonly used types of strings
+        // 1. String - owned
+        // 2. &str - borrowed String slice
+    // Must use an owned String to store in struct
+    // Use &str when passing to a function
+    // Use .to_owned() or String:from() to create an owned copy of a string slice
+    // Use an owned String when stroing in a struct
+
+    fn print_it(data: &str){
+        println!("{:?}", data);
+    }
+
+    print_it("It is a borrowed string");
+    let owned_string = "Owned string".to_owned();
+    let another_owned_string = String::from("another owned string");
+    print_it(&owned_string);
+    print_it(&another_owned_string);
+
+
+    struct Employee {
+        name: String,
+    }
+    
+    let emp_name = String::from("Vishwas");
+    let empployee = Employee {
+        name: emp_name
+    };
+    print_it(&empployee.name);
+
+    let another_emp_name = "Vikram".to_owned();
+    let another_employee = Employee {
+        name: another_emp_name
+    };
+    print_it(&another_employee.name);
+}
 
 fn main() {
     match_expression();
@@ -398,6 +435,7 @@ fn main() {
     ownership();
     impl_keyword();
     vector_keyword();
+    string_type();
 
 }
 
