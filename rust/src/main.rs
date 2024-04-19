@@ -223,6 +223,115 @@ fn owernship(){
     printBookPages(&book);
 }
 
+fn impl_keyword1(){
+    struct Temperature {
+        degree_f: f64,
+    }
+
+    // impl keyword followed by name of the struct
+    // impl Temperature {
+    //     fn show_temp(temp: Temperature){
+    //         println!("{}", temp.degree_f);
+    //     }
+    // }
+    // let hot: Temperature = Temperature { degree_f: 99.9 };
+    // Temperature::show_temp(hot)
+
+    // More clearner way is to use `self` keywork
+    // impl Temperature {
+    //     fn show_temp(&self){
+    //         println!("{}", self.degree_f);
+    //     }
+    // }
+    // let hot: Temperature = Temperature { degree_f: 99.9 };
+    // hot.show_temp()
+
+    // 
+    impl Temperature {
+        fn freezing() -> Self {
+            Self { degree_f: 32.0 }
+        }
+
+        fn boiling() -> Self {
+            Self { degree_f: 100.0 }
+        }
+
+        fn show_temp(&self){
+            println!("{}", self.degree_f);
+        }
+    }
+    let hot: Temperature = Temperature { degree_f: 99.9 };
+    hot.show_temp();
+
+    let cold = Temperature::freezing();
+    cold.show_temp();
+
+    let boiling = Temperature::boiling();
+    boiling.show_temp();
+    
+}
+
+fn impl_keyword() {
+    enum Color {
+        Red,
+        Black
+    }
+
+    impl Color {
+        fn print(&self){
+            match self {
+                Color::Red => println!("Color: Red"),
+                Color::Black => println!("Color: Black"),
+            }
+        }
+    }
+    struct Dimensions {
+        width: f64,
+        height: f64,
+        depth: f64
+    } 
+
+    impl Dimensions {
+        fn print(&self){
+            println!("width: {:?}", self.width);
+            println!("height: {:?}",  self.height);
+            println!("depth: {:?}",  self.depth);
+        }
+    }
+
+    struct ShippingBox {
+        dimensions: Dimensions,
+        weight: f64,
+        color: Color
+    }
+
+    impl ShippingBox {
+        fn new(weight: f64, dimensions: Dimensions,  color: Color) -> Self {
+            Self {
+                dimensions,
+                weight,
+                color
+            }
+        }
+
+        fn print(&self){
+            self.color.print();
+            self.dimensions.print();
+            println!("weight: {:?}", self.weight);
+        }
+    }
+
+
+    let small_dimensions = Dimensions {
+        width: 1.0,
+        height: 1.0,
+        depth: 1.0,
+    };
+
+    let small_box = ShippingBox::new(5.0, small_dimensions, Color::Red);
+    small_box.print()
+}
+
 
 fn main() {
     match_expression();
@@ -233,6 +342,7 @@ fn main() {
     tuples_keyword();
     expression();
     ownership();
+    impl_keyword();
 
 }
 
