@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <style>
+        .h-10 {
+            height: 10rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <h1>Hello World!</h1>
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="bg-primary p-3 text-white text-center mb-1"> Column </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="bg-primary p-3 text-white text-center mb-1"> Column </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="bg-primary p-3 text-white text-center mb-1"> Column </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="bg-primary p-3 text-white text-center mb-1"> Column </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- VERTICAL ALIGMENTS ROW & COLs-->
+    <!-- align-items-start/center/end aligh-self-start/center/end-->
+    <!-- <div class="container">
+        <div class="row h-10 bg-info mb-3 align-items-start">
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-info mb-3 align-items-center">
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-info mb-3 align-items-end">
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-info mb-3">
+            <div class="col-md-4 align-self-start ">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4 align-self-center">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+            <div class="col-md-4 align-self-end">
+                <div class="bg-primary text-white p-3">Col</div>
+            </div>
+        </div>
+
+    </div> -->
+
+    <!-- HORIZONTAL ALIGMENTS ROW & COLs-->
+    <!-- justify-content-start/center/end/between/around-->
+    <!-- <div class="container">
+        <div class="row h-10 bg-warning mb-3 justify-content-start">
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-warning  mb-3 justify-content-center ">
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row h-10 bg-warning  mb-3 justify-content-end ">
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-warning  mb-3 justify-content-around ">
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+        </div>
+
+        <div class="row h-10 bg-warning  mb-3 justify-content-between ">
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="bg-primary p-3 text-white mb-3">
+                    columns
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="container">
+        <div class="row bg-warning h-10 align-items-start">
+            <div class="col-md-3">
+                <div class="bg-primary p-3  mt-3 text-white">
+                    1st col
+                </div>
+            </div>
+            <div class="col-md-3 ms-auto">
+                <div class="bg-primary p-3  mt-3 text-white">
+                    2nd col
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-warning h-10 mt-3 align-items-start">
+            <div class="col-md-3 me-auto">
+                <div class="bg-primary p-3  mt-3 text-white">
+                    1st col
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="bg-primary p-3  mt-3 text-white">
+                    2nd col
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="container ">
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border  float-sm-end">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+
+        <div class="col-sm-6  bg-warning mb-2 p-2  border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+
+        </div>
+
+        <div class="col-sm-6 bg-warning  mb-2 p-2 border float-sm-left">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                height="200" />
+            TextText Text Text Text TextText Text TextText Text Text Text TextText Text TextText Text Text Text
+            TextText
+            Text TextText Text Text Text TextText Text
+        </div>
+
+    </div> -->
+
+    <!--Gutters-->
+    <!-- <div class="container bg-info mt-5 overflow-hidden">
+        <div class="row bg-warning h-10 gx-5">
+            <div class="col-md-6">
+                <div class="bg-primary p-3 text-white">Hello</div>
+            </div>
+            <div class="col-md-6">
+                <div class="bg-primary p-3 text-white">Hello</div>
+            </div>
+        </div>
+
+        <div class="row bg-warning h-10 mt-3">
+            <div class="col-md-6">
+                <div class="bg-primary p-3 text-white  g-0">Hello</div>
+            </div>
+            <div class="col-md-6">
+                <div class="bg-primary p-3 text-white  g-0">Hello</div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="container-fluid">
+        <div class="row bg-warning h-10 ">
+            <div class="col-xs-6">
+                test
+            </div>
+            <div class="col-xs-6">
+                test
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <!-- Text utilities-->
+    <!-- <div><ins>Ins Tag</ins></div>
+    <div><del>Delete Tag</del></div>
+    <div><u>Underline Tag</u></div>
+    <div><small>Small Tag</small></div>
+    <div><strong>Strong Tag</strong></div>
+    <div><span class="text-decoration-line-through">Span Tag</span></div>
+    <div>
+        <p>
+            <abbr title="abbribute">attribute</abbr>
+        </p>
+    </div> -->
+
+    <!-- Workng with list -->
+    <!-- <ul class="list-unstyled">
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>
+            <ul>
+                <li>One-One</li>
+                <li>One-One</li>
+                <li>One-One</li>
+                <li>One-One</li>
+            </ul>
+        </li>
+    </ul>
+    <hr />
+    <ul class="list-inline">
+        <li class="list-inline-item">One. </li>
+        <li class="list-inline-item">Two. </li>
+        <li class="list-inline-item">Three. </li>
+    </ul>
+    <hr />
+    <dl class="container">
+        <div class="row">
+            <dt class="col-md-4">
+                Title
+            </dt>
+            <dd class="col-md-8 text-truncate">
+                Some data hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data hereSome
+                data hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data
+                hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data
+                hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data here
+
+                hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data here
+                hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data here
+                hereSome data hereSome data hereSome data hereSome data hereSome data hereSome data here
+            </dd>
+        </div>
+    </dl>
+
+
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col mt-1 p-3 bg-warning">Title</div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-1 p-3 bg-warning">Descriptoin</div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="bg-primary text-white p-3 mt-4">Image</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- images -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-4 ">
+                <img class="img-fluid"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images" />
+            </div>
+
+            <div class="col-md-4 ">
+                <img class="img-fluid img-thumbnail"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images" />
+            </div>
+
+            <div class="col-md-4 ">
+                <img class="img-fluid rounded"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img class="img-fluid img-thumbnail float-end"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                    height="200" width="200" />
+
+                <img class="img-fluid img-thumbnail float-start"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                    height="200" width="200" />
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Table -->
+    <!-- <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table table-bordered align-end">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Price ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Vishwas</td>
+                            <td>Vishwas@gmail.com</td>
+                            <td>+91-12312312312</td>
+                            <td>12.00</td>
+
+                        </tr>
+                        <tr class=" table-active">
+                            <td>2</td>
+                            <td>Vishwas</td>
+                            <td>Vishwas@gmail.com</td>
+                            <td>+91-12312312312</td>
+                            <td>12.00</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Vishwas</td>
+                            <td>Vishwas@gmail.com</td>
+                            <td>+91-12312312312</td>
+                            <td>12.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Vishwas</td>
+                            <td>Vishwas@gmail.com</td>
+                            <td>+91-12312312312</td>
+                            <td>12.00</td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Footer of the table</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Figure tag -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <figure class="figure text-center">
+                    <img class="figure-img img-fluid rounded"
+                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images">
+                    <figurecaption class="figure-caption ">Image form </figurecaption>
+                </figure>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Foms -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <fieldset>
+                        <legend>Login To Contiue</legend>
+                        <div class="mb-3">
+                            <label class="form-label" for="u_name">Username</label>
+                            <input class="form-control form-control-sm" type="text" id="u_name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="u_pass">Password</label>
+                            <input class="form-control" type="text" id="u_pass" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Forms: Datalist -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label" for="datalist">Select Country</label>
+                        <input class="form-control form-control-sm" list="datalistoptions" id="datalist"
+                            placeholder="Type to search..." required />
+                        <datalist id="datalistoptions">
+                            <option value="India">
+                            <option value="USA">
+                            <option value="China">
+                            <option value="Russia">
+                        </datalist>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Forms: Input groups -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input class="form-control form-control-sm" type="text" required />
+                            <span class="input-group-text">Username</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input class="form-control form-control-sm" type="text" required />
+                            <span class="input-group-text">Username</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Form: button dropdown -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <button class="btn btn-success dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">Profile</button>
+                            <ul class="list-unstyled dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Username</a></li>
+                                <li><a class="dropdown-item" href="#">Home</a></li>
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Setting</a></li>
+                            </ul>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Form: floating label -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control is-valid" id="floatingInput" placeholder="username">
+                        <label class="form-label" for="floatingInput">Username</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control is-invalid" id="floatingInput1" placeholder="username1"
+                            value="somethig@gmail.com">
+                        <label class="form-label" for="floatingInput1">Username1</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input type="password" class="form-control" id="floatingPass" placeholder="Password">
+                        <label class="form-label" for="floatingPass">Password</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <select class="form-control" id="floatingSlect">
+                            <option value="one">one</option>
+                            <option value="two">two</option>
+                            <option value="three">three</option>
+                        </select>
+                        <label class="form-label" for="floatingSlect">Select One Of These</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Forms: layouts -->
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+                    <div class="col-12">
+                        <label for="inline-username" class="visually-hidden">Username</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">@</span>
+                            <input class="form-control" type="text" id="inline-username" placeholder="Username" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="Preference" class="visually-hidden">Preference</label>
+                        <select id="Preference" class="form-select form-select-sm">
+                            <option selected>Select your pref...</option>
+                            <option value="...">...</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="Preference" class="visually-hidden">Preference</label>
+                        <select id="Preference" class="form-select form-select-sm">
+                            <option selected>Select your pref...</option>
+                            <option value="...">...</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Accordion -->
+    <!-- <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="accordion " id="season-1">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="episode-1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#episode-1-body" aria-expanded="true"
+                                aria-controls="episode-1-body">Episode 1</button>
+                        </h2>
+                        <div id="episode-1-body" class="accordion-collapse collapse show" aria-labelledby="episode-1"
+                            data-bs-parent="#season-1">
+                            <div class="accordion-body">
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="episode-2">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#episode-2-body" aria-expanded="true"
+                                aria-controls="episode-2-body">Episode 2</button>
+                        </h2>
+                        <div id="episode-2-body" class="accordion-collapse collapse" aria-labelledby="episode-1"
+                            data-bs-parent="#season-1">
+                            <div class="accordion-body">
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="episode-3">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#episode-3-body" aria-expanded="true"
+                                aria-controls="episode-3-body">Episode 3</button>
+                        </h2>
+                        <div id="episode-3-body" class="accordion-collapse collapse" aria-labelledby="episode-1"
+                            data-bs-parent="#season-1">
+                            <div class="accordion-body">
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+
+                                Some textSome text
+                                Some textSome textSome text
+                                Some textSome textSome text
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Alerts & Alerts dismissable -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-primary">This is primary alert!</div>
+                <div class="alert alert-secondary">This is secondary alert!</div>
+                <div class="alert alert-success">This is success alert!</div>
+                <div class="alert alert-danger"><i class="bi bi-exclamation-circle-fill me-1"></i>This is danger alert!
+                    <a class="alert-link">Click to learn more</a>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <i class="bi bi-exclamation-circle-fill me-1"></i>This is dismissible alert!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Badges -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-warning">
+                    Notifications <span class="badge bg-primary">12</span>
+                </button>
+
+                <button class="btn btn-warning position-relative">
+                    Notifications <span class="
+                    badge 
+                    bg-primary
+                    rounded-pill
+                    position-absolute
+                    top-0
+                    start-100
+                    translate-middle                                    
+                    ">12+</span>
+                </button>
+
+
+                <button class="btn btn-warning position-relative m-1">
+                    Notifications <span class="
+                    position-absolute
+                    top-0
+                    start-100
+                    translate-middle                         
+                    p-2
+                    bg-primary
+                    border
+                    border-warning
+                    rounded-circle
+                    "></span>
+                </button>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Breadcrumbs -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Home</li>
+                        <li class="breadcrumb-item" aria-current="page">About me</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb" style="--bs-bredcrumb-divier:&copy;">
+                    <ol class="breadcrumb bg-light border px-4 py-2 rounded">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item">About me</li>
+                        <li class="breadcrumb-item" aria-current="page">Date</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- card -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card w-75 text-center mb-3">
+                    <img class="card-img-top"
+                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                        height="200" width="200">
+                    <div class="card-body">
+                        <h5 class="card-title">Card Title</h5>
+                        <p class="card-text">
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                        </p>
+                        <p class="card-text">
+                            <small class="muted">Update 10 days ago</small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link text-decoration-none">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card w-50">
+                    <img class="card-img-top"
+                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F236047%2Fpexels-photo-236047.jpeg%3Fcs%3Dsrgb%26dl%3Dclouds-cloudy-countryside-236047.jpg%26fm%3Djpg&f=1&nofb=1&ipt=b5325186449eab810d43bcc42f5e0b549d7bf1dc6355cb23c929229337ae24eb&ipo=images"
+                        height="200" width="200">
+                    <div class="card-body">
+                        <h5 class="card-title">Card Title</h5>
+                        <p class="card-text">
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                        </p>
+                        <p class="card-text">
+                            <small class="muted">Update 10 days ago</small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link text-decoration-none">Read More</a>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card w-50 mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Card Title</h5>
+                        <p class="card-text">
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                            Some text
+                        </p>
+                        <p class="card-text">
+                            <small class="muted">Update 10 days ago</small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link text-decoration-none">Read More</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+</body>
+
+</html>
