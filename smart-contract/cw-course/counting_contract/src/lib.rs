@@ -51,7 +51,9 @@ pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: msg::ExecMsg
     use contract::exec_donation;
     
     match _msg {
-        Poke {} => exec::poke(_deps, _info).map_err(ContractError::from),
+        Poke {
+            proxy_contract_addr
+        } => exec::poke(_deps, _info, proxy_contract_addr).map_err(ContractError::from),
         Donate {} => exec_donation::donate(_deps,_info).map_err(ContractError::from),
         Withdraw {} => exec_donation::widthdraw(_deps, _env, _info)
     }
@@ -64,6 +66,7 @@ pub fn query(deps: Deps, _env: Env, msg: msg::QueryMsg) -> StdResult<Binary>{
 
     match msg {
         Value {} => to_binary(&query::value(deps)?),
+        GetProxyMessage {} => to_binary(&query::getProxyMessage(deps)?)
     }
 }
 
@@ -73,7 +76,7 @@ pub fn query(deps: Deps, _env: Env, msg: msg::QueryMsg) -> StdResult<Binary>{
 // passed to it is true. 
 #[cfg(test)]
 mod test {
-    use crate::msg::ExecMsg;
+    use crate::msg::{ExecMsg, ValueRespProxy};
 
     use self::msg::{QueryMsg, ValueResp};
 
@@ -112,7 +115,7 @@ mod test {
             sender.clone(), // simulating a blockchain address
             &InstantiateMsg{
                 counter: 0,
-                minimal_donation: coin(10, tokenDenom)
+                minimal_donation: Some(coin(10, tokenDenom))
             },
             &[],
             "Funding contract",
@@ -120,17 +123,22 @@ mod test {
         ).unwrap();
 
         // // lets first increment the counter = 1
+        let proxy_contract_addr = "abcd".to_owned();
         app.execute_contract(
             sender.clone(), 
             contract_addr.clone(), 
-            &ExecMsg::Poke {}, &[])
+            &ExecMsg::Poke {
+                proxy_contract_addr: proxy_contract_addr.clone()
+            }, &[])
             .unwrap();
 
         // // lets first increment the counter one more time = 2
         app.execute_contract(
             sender.clone(), 
             contract_addr.clone(), 
-            &ExecMsg::Poke {}, &[])
+            &ExecMsg::Poke {
+                proxy_contract_addr: proxy_contract_addr.clone()
+            }, &[])
             .unwrap();
 
         // lets send some fund; which will also increase the coounter = 3
@@ -150,6 +158,12 @@ mod test {
                         .unwrap();
 
         assert_eq!(resp, ValueResp {value: 2});
+
+        // test if proxy contract address is set
+        let resp1: ValueRespProxy = app.wrap().query_wasm_smart(contract_addr.clone(), &QueryMsg::GetProxyMessage {}).unwrap();
+        assert_eq!(resp1, ValueRespProxy { proxyContractAddress: proxy_contract_addr.clone()});
+
+
 
         // // lets check the balane of the cotnract as well....
         // assert_eq!(app.wrap().query_all_balances(contract_addr).unwrap(), coins(amount_to_be_sent_to_contract, tokenDenom));
@@ -184,7 +198,7 @@ mod test {
             sender.clone(), // simulating a blockchain address
             &InstantiateMsg{
                 counter: 0,
-                minimal_donation: coin(10, tokenDenom)
+                minimal_donation: Some(coin(10, tokenDenom))
             },
             &[],
             "Funding contract",
@@ -248,7 +262,7 @@ mod test {
             sender.clone(), // simulating a blockchain address
             &InstantiateMsg{
                 counter: 0,
-                minimal_donation: coin(10, tokenDenom)
+                minimal_donation: Some(coin(10, tokenDenom))
             },
             &[],
             "Funding contract",
@@ -327,7 +341,7 @@ mod test {
             sender.clone(), // simulating a blockchain address
             &InstantiateMsg{
                 counter: 0,
-                minimal_donation: coin(10, tokenDenom)
+                minimal_donation: Some(coin(10, tokenDenom))
             },
             &[],
             "Funding contract",
