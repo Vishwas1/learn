@@ -24,7 +24,8 @@ use msg::InstantiateMsg;
 // But in smart contract, entiry poitns can be many not us one unlike regular rust code which is main
 // The `instantiate()` is called when the smart contract is created for the first time
 // This it as a constructor
-#[entry_point]
+// #[entry_point]
+#[cfg_attr(not(feature = "library"), entry_point)]
 fn instantiate(
     // utility that allows querying and updating the contract state
     // querying another contract state
@@ -44,7 +45,8 @@ fn instantiate(
 }
 
 
-#[entry_point]
+// #[entry_point]
+#[cfg_attr(not(feature = "library"), entry_point)]
 pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: msg::ExecMsg) -> Result<Response, ContractError> {
     use msg::ExecMsg::*;
     use contract::exec;
@@ -54,12 +56,13 @@ pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: msg::ExecMsg
         Poke {
             proxy_contract_addr
         } => exec::poke(_deps, _info, proxy_contract_addr).map_err(ContractError::from),
-        Donate {} => exec_donation::donate(_deps,_info).map_err(ContractError::from),
+        Donate {} => exec_donation::donate(_deps,_info, _env).map_err(ContractError::from),
         Withdraw {} => exec_donation::widthdraw(_deps, _env, _info)
     }
 }
 
-#[entry_point]
+// #[entry_point]
+#[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, _env: Env, msg: msg::QueryMsg) -> StdResult<Binary>{
     use msg::QueryMsg::*;
     use contract::query;
@@ -74,7 +77,7 @@ pub fn query(deps: Deps, _env: Env, msg: msg::QueryMsg) -> StdResult<Binary>{
 // meaning that the code it wraps would be 
 // compiled-in if and only if the predicate 
 // passed to it is true. 
-#[cfg(test)]
+#[cfg(any(test, feature = "tests"))]
 mod test {
     use crate::msg::{ExecMsg, ValueRespProxy};
 

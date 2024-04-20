@@ -58,18 +58,18 @@ pub mod exec {
 pub mod exec_donation {
     // updating the state of our contract, so it keeps the minimal donation we expect
     use cosmwasm_std::{to_binary, to_json_binary, BankMsg, DepsMut, Env, MessageInfo, Response, StdError, StdResult, WasmMsg};
-    use crate::{error::ContractError, msg::{ExecMsg, QuickMintMsg}};
+    use crate::{error::ContractError, msg::{ExecMsg, ExecuteNFTMsg}};
 
     use super::{COUNTER, MINIMAL_DONATION, OWNER, COUNTER_PROXY_ADDR};
-    pub fn donate(deps: DepsMut, info: MessageInfo) -> StdResult<Response> {
+    pub fn donate(deps: DepsMut, info: MessageInfo, env: Env) -> StdResult<Response> {
         let mut counter = COUNTER.load(deps.storage)?;
         let minimal_donation = MINIMAL_DONATION.load(deps.storage)?;
         let mut resp  = Response::new();
         // Funds can be addressed by `info.funds` argument
-        // if info.funds.iter().any(|coin| {
-        //     coin.denom == minimal_donation.denom 
-        //     && coin.amount >= minimal_donation.amount
-        // }) {
+        if info.funds.iter().any(|coin| {
+            coin.denom == minimal_donation.denom 
+            && coin.amount >= minimal_donation.amount
+        }) {
             counter += 1;
             COUNTER.save(deps.storage, &counter)?;
             let value: u64 = COUNTER.load(deps.storage)? + 1;
@@ -83,17 +83,46 @@ pub mod exec_donation {
             let proxy_contract_addr = COUNTER_PROXY_ADDR.load(deps.storage)?;
             println!("proxy_contract_addr ---------- {:?}", proxy_contract_addr.clone().to_string());
 
+            // let msg = WasmMsg::Execute {
+            //     contract_addr: proxy_contract_addr.clone(),
+            //     msg: to_json_binary(&ExecMsg::Poke {
+            //         proxy_contract_addr: proxy_contract_addr.clone().to_string()
+            //     })?,
+            //     funds: (&[]).to_vec(),
+            // };
+
+            // mint NFT
             let msg = WasmMsg::Execute {
                 contract_addr: proxy_contract_addr.clone(),
-                msg: to_json_binary(&ExecMsg::Poke {
-                    proxy_contract_addr: proxy_contract_addr.clone().to_string()
+                msg: to_json_binary(&ExecuteNFTMsg::Mint { 
+                    token_id: counter.clone().to_string(), 
+                    owner: env.contract.address.to_string(), 
+                    token_uri: None, 
+                    extension: None
                 })?,
                 funds: (&[]).to_vec(),
             };
 
             println!("msg ------------ {:?}" , msg);
-            resp = resp.add_message(msg); // this is important
-        //};
+            resp = resp.add_message(msg); 
+
+
+            // transfer NFT
+            let transfer_msg = WasmMsg::Execute {
+                contract_addr: proxy_contract_addr.clone(),
+                msg: to_json_binary(&ExecuteNFTMsg::TransferNft { 
+                    recipient: info.sender.to_string(), 
+                    token_id: counter.clone().to_string() 
+                })?,
+                funds: (&[]).to_vec(),
+            };
+            println!("msg ------------ {:?}" , transfer_msg);
+
+            resp = resp.add_message(transfer_msg); 
+
+
+
+        };
         resp = resp.add_attribute("action","donate")
         .add_attribute("sender", info.sender.as_str());
         // .add_attribute("counter", counter.to_string());

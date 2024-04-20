@@ -1,5 +1,6 @@
 use cosmwasm_schema::{cw_serde, QueryResponses};
-use cosmwasm_std::{to_binary, Coin, CosmosMsg, StdResult, WasmMsg};
+use cosmwasm_std::{to_binary, Coin, CosmosMsg, Empty, StdResult, WasmMsg};
+use cw721_base::Extension;
 use cw_storage_plus::Item;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -44,3 +45,4 @@ pub struct ValueRespProxy {
 
 
 
+pub type ExecuteNFTMsg = cw721_base::ExecuteMsg<Extension, Empty>;
