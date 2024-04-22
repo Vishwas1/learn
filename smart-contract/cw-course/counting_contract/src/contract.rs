@@ -3,6 +3,8 @@ use cosmwasm_std::{DepsMut, MessageInfo, Response, StdResult, WasmMsg};
 use crate::{state::*, InstantiateMsg};
 
 
+
+
 pub fn instantiate(deps: DepsMut, msg: InstantiateMsg, info: MessageInfo) -> StdResult<Response> {
     COUNTER.save(deps.storage, &msg.counter)?;
     if let Some(min_donation) = msg.minimal_donation {
@@ -12,6 +14,9 @@ pub fn instantiate(deps: DepsMut, msg: InstantiateMsg, info: MessageInfo) -> Std
     OWNER.save(deps.storage, &info.sender);
     Ok(Response::new())
 }
+
+
+
 
 pub mod query {
     use cosmwasm_std::{Deps, StdResult};
@@ -56,11 +61,13 @@ pub mod exec {
 }
 
 pub mod exec_donation {
-    // updating the state of our contract, so it keeps the minimal donation we expect
-    use cosmwasm_std::{to_binary, to_json_binary, BankMsg, DepsMut, Env, MessageInfo, Response, StdError, StdResult, WasmMsg};
-    use crate::{error::ContractError, msg::{ExecMsg, ExecuteNFTMsg}};
+    use std::any::Any;
 
-    use super::{COUNTER, MINIMAL_DONATION, OWNER, COUNTER_PROXY_ADDR};
+    // updating the state of our contract, so it keeps the minimal donation we expect
+    use cosmwasm_std::{to_binary, to_json_binary, BankMsg, CosmosMsg, DepsMut, Env, MessageInfo, ReplyOn, Response, StdError, StdResult, SubMsg, WasmMsg};
+    use crate::{error::ContractError, msg::{Cw721InstantiateMsg, ExecMsg, ExecuteNFTMsg, NftInstantiateMsg}};
+
+    use super::{COUNTER, COUNTER_PROXY_ADDR, INSTANTIATE_TOKEN_REPLY_ID, MINIMAL_DONATION, OWNER};
     pub fn donate(deps: DepsMut, info: MessageInfo, env: Env) -> StdResult<Response> {
         let mut counter = COUNTER.load(deps.storage)?;
         let minimal_donation = MINIMAL_DONATION.load(deps.storage)?;
@@ -159,6 +166,42 @@ pub mod exec_donation {
         Ok(resp)
 
     }
+
+    pub fn deploy_nft_contract(deps: DepsMut, info: MessageInfo, env: Env, token_code_id: u64) -> StdResult<Response> {
+
+        // let new_sub_msg = SubMsg::reply_always(WasmMsg::Instantiate {
+        //     code_id: 14,
+        //     msg: to_binary(&nft_instantiate_message)?,
+        //     funds: vec![],
+        //     admin: Some(info.sender.to_string()),
+        //     label: "HypersignNFT-".to_string() + env.contract.address.as_str(),
+        // }, 1);
+        let sub_msg: Vec<SubMsg> = vec![SubMsg {
+            msg: WasmMsg::Instantiate {
+                code_id: token_code_id,
+                msg: to_json_binary(&Cw721InstantiateMsg {
+                    name: "issuerNFT".to_owned(),
+                    symbol: "issuerNFT".to_owned(),
+                    minter: env.contract.address.clone().to_string()                    // 
+                })?,
+                funds: vec![],
+                admin: Some(info.sender.to_string()),
+                label: String::from("Instantiate fixed price NFT contract"),
+            }
+            .into(),
+            id: INSTANTIATE_TOKEN_REPLY_ID,
+            gas_limit: None,
+            reply_on: ReplyOn::Success,
+        }];
     
+     // // 
+    //  let value: u64 = COUNTER.load(deps.storage)? + 1;
+    //  COUNTER.save(deps.storage, &value)?;
+     
+     let resp = Response::new().add_submessages(sub_msg);
+     Ok(resp)
+
+    }
+
 }
 

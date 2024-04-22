@@ -42,18 +42,18 @@ nibid tx wasm store ./artifacts/counting_contract.wasm --from validator --gas 10
 
 nibid q wasm list-code 
 
-nibid tx wasm instantiate 11 '{"counter": 0, "minimal_donation": { "amount": "10", "denom": "unibi"}}' --label "Activity" --from validator --gas 100000000 --no-admin
+nibid tx wasm instantiate 22 '{"counter": 0, "minimal_donation": { "amount": "10", "denom": "unibi"}}' --label "Activity" --from validator --gas 100000000 --no-admin
 
-nibid q wasm list-contract-by-code 11
+nibid q wasm list-contract-by-code 22
 
 ```
 kyc_contract_addr: 
-nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s
+nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg
 
 ```
-nibid query wasm contract-state smart nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s '{"value":{}}'
+nibid query wasm contract-state smart nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"value":{}}'
 ```
-
+<!-- 
 ## 4. Issuer deploys the NFT contract with Kyc_contract_address as an admin
 
 ```
@@ -61,38 +61,48 @@ nibid tx wasm store ./artifacts/cw721_base.wasm --from issuer --gas 100000000 --
 
 nibid q wasm list-code 
 
-nibid tx wasm instantiate 12 '{"name": "Kyc SBT", "symbol": "kycsbt", "minter": "nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s"}' --label "Activit" --from issuer --gas 100000000 --no-admin --keyring-backend test
+nibid tx wasm instantiate 12 '{"name": "Kyc SBT", "symbol": "kycsbt", "minter": "nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg"}' --label "Activit" --from issuer --gas 100000000 --no-admin --keyring-backend test
 
-nibid q wasm list-contract-by-code 12
+nibid q wasm list-contract-by-code 16
 
 ```
-issuer contract address: nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y
+issuer contract address: nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j
+ -->
+
+## 4. ISsuer deploys NFT contract through KYC
+
+```
+nibid tx wasm execute nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"deploy": {"token_code_id": 21}}' --from issuer --gas 100000000  --keyring-backend test
+```
+
+### Get the NFT contract address
+```
+nibid query wasm contract-state smart nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"get_proxy_message":{}}'
+```
 
 ### Check the minter - it should be kyc contract address
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"minter":{}}'
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"minter":{}}'
 ```
 
-
-
-## 5. Admin whitelist nft_contract_address in KYC contract through reg_issuer_contract()
+<!-- ## 5. Admin whitelist nft_contract_address in KYC contract through reg_issuer_contract()
 
 ```
-nibid tx wasm execute nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s '{"poke": {"proxy_contract_addr": "nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y"}}' --from validator --gas 100000000 --fees=200000unibi
+nibid tx wasm execute nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"poke": {"proxy_contract_addr": "nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j"}}' --from validator --gas 100000000 --fees=200000unibi
 
-nibid query wasm contract-state smart nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s '{"get_proxy_message":{}}'
-```
+nibid query wasm contract-state smart nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"get_proxy_message":{}}'
+``` -->
 
-## 6. User calls mintNFT() - donate of the KYC contract
-
-```
-nibid tx wasm execute nibi13s9jpl2cqy8g3ggxhps40up3cys7ru6rgek5ad06zraf6xacsg3slecw8s '{"donate": {}}' --from user --amount 10unibi --gas 100000000 --fees=200000unibi --keyring-backend test
-```
-
-## 7. Check in NFT contract is user is the owner of the NFT (token - id 2)
+## 5. User calls mintNFT() - donate of the KYC contract
 
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"owner_of":{"token_id": "4"}}'
+nibid tx wasm execute nibi1durey747cm82sfqm0ph93wk63ljnm4j60euyp2y3krj8dnfqzacq6dh6yg '{"donate": {}}' --from user --amount 10unibi --gas 100000000 --fees=200000unibi --keyring-backend test
+```
+
+## 6. Check in NFT contract if user is the owner of the NFT (token - id 2)
+
+```
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"owner_of":{"token_id": "2"}}'
 ```
 
 this is user
@@ -105,22 +115,23 @@ data:
 
 ## Return total number of tokens issued
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"num_tokens":{}}'
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"num_tokens":{}}'
 ```
 
 ## Check metadata of the nft 
 
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"nft_info":{"token_id": "4"}}'
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"nft_info":{"token_id": "2"}}'
 ```
 
 ## Check metadata of the nft (all)
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"all_nft_info":{"token_id": "4"}}'
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"all_nft_info":{"token_id": "2"}}'
 ```
 
 ## Check nos tokens owned by a user
 
 ```
-nibid query wasm contract-state smart nibi1twqmj52wms2hhpxvwc4rulrfezy9yprpdv7tannvr5w0u7e05wmqs3j26y '{"tokens":{"owner": "nibi13yzstuzzw3ur6lpmn9xh6utx0ym052mq2eagm5"}}'
+nibid query wasm contract-state smart nibi1h6828as2z5av0xqtlh4w9m75wxewapk8z9l2flvzc29zeyzhx6fqvy4y7j '{"tokens":{"owner": "nibi13yzstuzzw3ur6lpmn9xh6utx0ym052mq2eagm5"}}'
 ```
+

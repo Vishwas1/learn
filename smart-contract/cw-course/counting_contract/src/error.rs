@@ -8,5 +8,10 @@ pub enum ContractError {
     #[error("Unauthorized - only {owner} can call it")]
     Unauthorized {
         owner: String
-    }
+    },
+
+    #[error("Invalid token_id - {token_id} already claimed")]
+    InvalidTokenId {
+        token_id: u64
+    },
 }

@@ -1,4 +1,5 @@
-use cosmwasm_std::Coin;
+use cosmwasm_std::{Coin, Reply};
+use cw_utils::parse_reply_instantiate_data;
 use cosmwasm_std::{ 
     Addr, 
     entry_point, 
@@ -20,6 +21,7 @@ mod error;
 
 use error::ContractError;
 use msg::InstantiateMsg;
+use state::{COUNTER, COUNTER_PROXY_ADDR, INSTANTIATE_TOKEN_REPLY_ID};
 // Smart contract's entry potin
 // But in smart contract, entiry poitns can be many not us one unlike regular rust code which is main
 // The `instantiate()` is called when the smart contract is created for the first time
@@ -57,7 +59,10 @@ pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: msg::ExecMsg
             proxy_contract_addr
         } => exec::poke(_deps, _info, proxy_contract_addr).map_err(ContractError::from),
         Donate {} => exec_donation::donate(_deps,_info, _env).map_err(ContractError::from),
-        Withdraw {} => exec_donation::widthdraw(_deps, _env, _info)
+        Withdraw {} => exec_donation::widthdraw(_deps, _env, _info),
+        Deploy { 
+            token_code_id
+        } => exec_donation::deploy_nft_contract(_deps, _info, _env, token_code_id).map_err(ContractError::from),
     }
 }
 
@@ -72,6 +77,26 @@ pub fn query(deps: Deps, _env: Env, msg: msg::QueryMsg) -> StdResult<Binary>{
         GetProxyMessage {} => to_binary(&query::getProxyMessage(deps)?)
     }
 }
+
+// Reply callback triggered from cw721 contract instantiation
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn reply(deps: DepsMut, _env: Env, msg: Reply) -> Result<Response, ContractError> {
+
+    if msg.id != INSTANTIATE_TOKEN_REPLY_ID {
+        return Err(ContractError::InvalidTokenId { token_id: msg.id});
+    }
+
+    let value: u64 = COUNTER.load(deps.storage)? + 1;
+    COUNTER.save(deps.storage, &value)?;
+
+    let reply = parse_reply_instantiate_data(msg).unwrap();
+    let cw721_address = Addr::unchecked(reply.contract_address).into();
+    
+    COUNTER_PROXY_ADDR.save(deps.storage, &cw721_address)?;
+
+    Ok(Response::new())
+}
+
 
 // cfg is a conditional compilation attribute
 // meaning that the code it wraps would be 
