@@ -532,4 +532,26 @@ pub mod tutorial {
             println!("Tweet Summary: {}", tweet.summarize());
         }
         
+    pub fn async_example(){
+        // Import necessary modules
+        use tokio::runtime::Runtime; // Import Tokio runtime
+
+        // Define an asynchronous function that returns a future
+        async fn async_task() {
+            // Asynchronous task (e.g., waiting for a timer)
+            println!("Async task started...");
+            tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
+            println!("Async task completed!");
+        }
+
+        fn main() {
+            // Create a Tokio runtime
+            let mut rt = Runtime::new().unwrap();
+
+            // Call the asynchronous function within the Tokio runtime
+            rt.block_on(async {
+                async_task().await; // Call the asynchronous function and await its completion
+            });
+        }
+    }
 }
