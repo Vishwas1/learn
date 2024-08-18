@@ -148,7 +148,7 @@ We need 4 DID and DIDDocs by each participant for each relataionship:
 
 DIDDocs would contain `serviceEndPoint` property with following info:
 
-```json
+```js
 {
   "service": [{
     "id": "did:example:123456789abcdefghi#did-communication",
@@ -166,7 +166,7 @@ In the above example, there is one recipient of the message and one mediator.
 
 **`AF(DID/DIDDoc)`**
 
-```json
+```js
 {
   "service": [{
     "id": "did:peer:alice-for-faber#did-communication",
@@ -181,7 +181,7 @@ In the above example, there is one recipient of the message and one mediator.
 
 **`FA(DID/DIDDoc)`**
 
-```json
+```js
 {
   "service": [{
     "id": "did:peer:faber-for-alice#did-communication",
@@ -196,7 +196,7 @@ In the above example, there is one recipient of the message and one mediator.
 
 **`AM(DID/DIDDoc)`**
 
-```json
+```js
 {
   "service": [{
     "id": "did:peer:alice-for-mediator#did-communication",
@@ -211,7 +211,7 @@ In the above example, there is one recipient of the message and one mediator.
 
 **`MA(DID/DIDDoc)`**
 
-```json
+```js
 {
   "service": [{
     "id": "did:peer:mediator-for-alice#did-communication",
