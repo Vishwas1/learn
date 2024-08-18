@@ -30,7 +30,7 @@ The controller is the component that, well, controls the behavior of an instance
 
 ## Aries Cloud Agent (ACA-py) Architecture
 
-![aca](/assets/aca-py.png)
+![aca](assets/aca-py.png)
 
 - When the framework receives a message (an event) from the outside world, it sends a webhook (a notification) about the event to the controller so the controller can decide what to do.
 In turn, the controller sends a request to the framework to tell the framework how to respond to the event.
@@ -50,7 +50,7 @@ https://github.com/hyperledger/aries-cloudagent-python?tab=readme-ov-file#unders
 
 ## Establish connections between Agents
 
-![](/assets/agent-agent-conn.png)
+![](assets/agent-agent-conn.png)
 
 [sequence_diagram](https://sequencediagram.org/index.html#initialData=C4S2BsFMAIEEHNIDtgGdoGED2SmQMag6oBQZAhoVgE5zgj6QLLAkAO51o+IHK0AMXIAjSNWYoyLagE9UHHknjQADADoA7CSRZgMLADcxgkWInAAXIJBIAJulj1G56AAoA-AEoSQ0eMQoALSBAHyODEwBltCoyPbQNgZgMMAAFtRYAK7wqdAAigBKZDp60IbG4c5RVhjUkOR66OTQeADu0GzUIAYNMAAiAJJ9JJWRLNChJn7mVgBEdQCOmZCowNDAWND4OHiEs9AA3uROkAD6nSDkPaWDfQC+xbr6RrS+ZtUT0ADKG3UOJ+htrgCEQkAkkAAzLAAHSQgS2dV6TRakHaF2u-SGPlM-nGk1GMxicWRfzYxBgAFsVqhyIhoI9SuVXjjzAAaAkfaAAdVSWCwvKwAEJoAAVVIwWksJp1LY7EGQWxqMgc8YAHkmb1xKAsmug5DsdAiW31LSw7ViBqpqBpiHQGzKeD1JXFtCAA)
 
@@ -82,7 +82,7 @@ The architecture for the controller and framework with Aries Framework JavaScrip
 Instead of embedding the framework in a web server and exposing an HTTP interface for the controller, 
 > AFJ is built as a library, and the library is embedded in an application—the controller—that you create.
 
-![ajf.png](/assets/ajf.png)
+![ajf.png](assets/ajf.png)
 
 ### Aries frameworm Go
 

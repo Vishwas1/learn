@@ -14,7 +14,7 @@ When a DIDComm message is sent from one agent to another, it is routed per the i
 For example, using the following picture, Faber might be told by Alice to send messages to her phone (agent 5) via agents 3 and 4, and Faber might always send out messages via agent 2.   That means a message from Faber to Alice actually involves 5 different Aries agents, flowing from agents 1 to 5 via agents 2, 3 and then 4.
 
 
- ![img](/assets/msg-flow.png)
+ ![img](assets/msg-flow.png)
 
  When Faber and Alice communicate, they want their message to be private—***they don’t want the routing agents to see the contents of their message***.
 
@@ -32,7 +32,7 @@ For example, using the following picture, Faber might be told by Alice to send m
   > For each mediator Alice adds, Faber explicitly **adds another envelope**, another layer of encryption 
 
 
-![img](/assets/msg-routing.png)
+![img](assets/msg-routing.png)
 
 **Paper message analogy**, 
 
@@ -135,11 +135,11 @@ Faber is an enterprise agent (an issuer/verifier) and is establishing a connecti
 
 The maker of Alice’s mobile wallet has deployed a mediator (agent 4) that is used by all of the mobile wallet apps that have been installed on their customers’ mobile phones.
 
-![img](/assets/fab-alice.png)
+![img](assets/fab-alice.png)
 
 We need 4 DID and DIDDocs by each participant for each relataionship:
 
-![img](/assets/did-doc-relantion.png)
+![img](assets/did-doc-relantion.png)
 
 - Alice for Faber (`AF(DID/DIDDoc)`)
 - Faber for Alice (`FA(DID/DIDDoc)`)
@@ -238,7 +238,7 @@ In the above example, there is one recipient of the message and one mediator.
 - Completing the connection
 
 
-![img](/assets/alice-faber-msg-sequence.png)
+![img](assets/alice-faber-msg-sequence.png)
 
 [sequence diagram](https://sequencediagram.org/index.html#initialData=C4S2BsFMAJoWUgZ0QQwOYwGLgPYHdoAjSYPSSAO2hXBAGMYUKATaAMxWICdpgALLjgCuaPtAC2kZiBTAcXAFAKUdOTxr1IAfTw0owBQAcUXUHRDGKwCVJlqjJsxabWO3LekoGFaQUMPQAJIUYDK0AF6yIDgUyrQMOnokALQAfJLSsvIAXNAARBl2kMlckACOQkjAeQoUOMAwOABukDyFWVy5AOKUrbJI1NAAIoFD7PLU8TAA2nAAglrSzAC6Cu1qaRoJuuD6uQW2-cm+LnnQAN7ziyDMAL4KlMxKvsIBAMIxFJCqIBRovDhoJhOK0FG5Wh4MFZkmlUlttDs9gBlOhMRDQACKACVoHQcMwZj1gOi8RQvj8YtBfk1QpS8GAxMDuNAAKIsQw4X7AVZKOoNaDNVqTTSJXYkbq9Lj9dEoYajcY8cE8aZzTDXFa8+qNFrqKaivYAKgNqvVQxwdAAdIhWjSGEbsgAdCjnUrmQwgLwAaUgAE9ELkVWqlssADROvygP7ev0Bq7BsMUa1cW2QNnMDlc-Z8YDAQz+gD0+fW8mSniseXucRFiJSsOLnXyAGtfbREMBkv5mP0zucTUt7vD9SlUkrIV5cr2gzd7o9nn53jhxIZ9L9-vwYB8yd9QDFalqBTr2CCuGOrLkAAqlYyldHrmzITwK6BzKYAcnRNeAFr3-MFiuPp7ALkbJ0FwPqGMS1AsNAy4qAM-CyPeqAYE6VJWICsp5Gw8i6FwzBnJID4YE+L6aO+NiZGo35ggBZbtukhxqLkSKPLefCIYRyEwHIvB8DA9bQI8GZWEo9YwqkcJ6p+uScZ4SiPEAA)
 
