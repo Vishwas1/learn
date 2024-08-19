@@ -14,6 +14,7 @@ Objectives:
 - Understand the requirements in the moving to production in an Aries environment
 
 
+![img](assets/minmap.png)
 
 
 References
@@ -25,7 +26,7 @@ References
 - [Using JSON-LD credentials using ACA-Py](https://aca-py.org/latest/demo/AliceWantsAJsonCredential/)
 - [Indicio Public Cloud Mediator US-East 2](https://indicio-tech.github.io/mediator/)
 - [Aries Mediator Service](https://github.com/hyperledger/aries-mediator-service)
-
+- [Aries Cloud Agent Python: Architectural Deep Dive - Slides](https://docs.google.com/presentation/d/1K7qiQkVi4n-lpJ3nUZY27OniUEM0c8HAIk4imCWCx5Q/edit#slide=id.g5d43fe05cc_0_105)
 
 ## Groups and Forums
 - [Hyperledger Aries project page](https://www.hyperledger.org/projects/aries)
