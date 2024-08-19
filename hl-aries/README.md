@@ -14,7 +14,7 @@ Objectives:
 - Understand the requirements in the moving to production in an Aries environment
 
 
-![img](assets/minmap.png)
+![img](assets/mindmap-2.png)
 
 
 References
