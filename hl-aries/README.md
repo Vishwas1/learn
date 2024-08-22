@@ -17,7 +17,7 @@ Objectives:
 ![img](assets/mindmap-2.png)
 
 
-References
+## References
 
 - [Becoming an Indy/Aries Developer](https://github.com/hyperledger/aries-cloudagent-python/blob/main/docs/gettingStarted/README.md)
 - https://github.com/hyperledger/aries
@@ -27,6 +27,10 @@ References
 - [Indicio Public Cloud Mediator US-East 2](https://indicio-tech.github.io/mediator/)
 - [Aries Mediator Service](https://github.com/hyperledger/aries-mediator-service)
 - [Aries Cloud Agent Python: Architectural Deep Dive - Slides](https://docs.google.com/presentation/d/1K7qiQkVi4n-lpJ3nUZY27OniUEM0c8HAIk4imCWCx5Q/edit#slide=id.g5d43fe05cc_0_105)
+- [Traction is a tool (UI) for simplifying the sending and receiving of digital credentials.It’s for governments and organizations.](https://digital.gov.bc.ca/digital-trust/technical/traction/)
+- [Traction github](https://github.com/bcgov/traction/)
+- [Traction SSI studio](https://traction-sandbox-tenant-ui.apps.silver.devops.gov.bc.ca/)
+- [Run Faber as an Author, with a dedicated Endorser agent](https://aca-py.org/latest/demo/Endorser/)
 
 ## Groups and Forums
 - [Hyperledger Aries project page](https://www.hyperledger.org/projects/aries)
@@ -35,3 +39,11 @@ References
 - [Aries Cloud Agent - Python User Group](https://wiki.hyperledger.org/pages/viewpage.action?pageId=24780322), meetings schedule, and [Discord channel](https://discord.com/channels/905194001349627914/941706593739894804)
 - Aries Framework JavaScript, Wiki, meetings schedule, and [Discord channel](https://discord.com/channels/905194001349627914/941708033434738768)
 - Aries Framework Bifold, Wiki, meetings schedule, and [Discord channel](https://discord.com/channels/905194001349627914/941708242030063656)
+
+## Upnext
+
+- https://credo.js.org/guides/getting-started/set-up/openid4vc
+- https://aca-py.org/latest/features/JsonLdCredentials/
+- https://aca-py.org/latest/features/SelectiveDisclosureJWTs/
+- [Publishing Anoncred Objects To Other Ledgers](https://aca-py.org/latest/features/AnonCredsMethods/)
+- https://docs.cheqd.io/product/architecture/adr-list/adr-002-did-linked-resources
