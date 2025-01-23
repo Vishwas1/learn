@@ -1,26 +1,19 @@
 pub mod ed25519_test {
-    use ed25519_dalek::ed25519::signature::{ Keypair, SignerMut };
-    use ed25519_dalek::SigningKey;
-    use ed25519_dalek::{ Signature};
-    use ed25519_dalek::{ SECRET_KEY_LENGTH, KEYPAIR_LENGTH,  };
-    use ed25519_dalek::VerifyingKey;
-    use json_ld::print;
-    use ed25519_dalek::PUBLIC_KEY_LENGTH;
-    use serde_json::{ json, Value };
-    use sha256::digest;
-    use ed25519_dalek::{Verifier};
-    // use multibase::{encode, decode, Base};
-    use ed25519_dalek::{DigestSigner};
-    use bincode::deserialize;
-    use base58::ToBase58;
-    use multibase::{encode, Base};
+    use ed25519_dalek::{SigningKey, Signature, KEYPAIR_LENGTH, VerifyingKey, PUBLIC_KEY_LENGTH, Verifier};
+    use multibase::Base;
 
-    use didkit::ssi::{
-        self,
-        jsonld::{parse_ld_context, StaticLoader},
-        rdf,
-        jwk::{Algorithm, Error}
-    };
+
+    use sophia::api::parser::QuadParser;
+    use sophia::api::graph::SetGraph;
+    // use sophia::api::parser::nq;
+    // use sophia::jsonld;
+    // // use crate::json_ld_test::ssi::jsonld;
+    // use sophia::api::inmem::FastGraph;
+    // use sophia::api::triple::stream::TripleSource;
+    // use sophia::api::serializer::Serializer;
+    use std::error::Error;
+    use cosmwasm_crypto::ed25519_verify;
+
 
     struct Ed25519KeyPair {
         signing_key: SigningKey,
@@ -32,7 +25,6 @@ pub mod ed25519_test {
         let (base, data) = decoded;
         match base {
             Base::Base58Btc => {
-                // `data` is the decoded byte array
                 // println!("Decoded data (Base58btc): {:?}", data);
                 //println!("Decoded data (Base58btc) vec: {:?}", data.to_vec());
             }
@@ -101,9 +93,6 @@ pub mod ed25519_test {
         };
     }
     
-
-
-
     fn generate_verifying_key(public_key_str: &str) -> VerifyingKey {
         const ARRAY_LENGTH: usize = 34;
         let public_key_bytes = decode_multibase_public_key(public_key_str).unwrap();
@@ -122,29 +111,54 @@ pub mod ed25519_test {
         println!("public_key_bytes.len {:?}",public_key_bytes.len());
 
         let verifying_key = ed25519_dalek::VerifyingKey::from_bytes(&public_key_bytes).unwrap();
-        // let verifying_key =  VerifyingKey::from(&public_key_bytes);
-        // println!("verifying_key.len {:?}",verifying_key);
-
-
         return verifying_key
     }
 
-    // pub fn test1(encoded_verifying_key: &str, encoded_signature: &str)->bool{
+    fn generate_verifying_key1(public_key_str: &str) -> [u8; PUBLIC_KEY_LENGTH] {
+        const ARRAY_LENGTH: usize = 34;
+        let public_key_bytes = decode_multibase_public_key(public_key_str).unwrap();
+        let t_public_key_array = vec_to_array::<ARRAY_LENGTH>(public_key_bytes.to_owned()).unwrap();
+        println!("t_public_key_array.len {:?}",t_public_key_array.len());
 
+        // extract secret key from index 2 to 32
+        let public_key_start_index = 2;
+        let public_key_end_index = t_public_key_array.len();
+        let public_key_array = t_public_key_array[
+            public_key_start_index..public_key_end_index
+        ]
+            .try_into()
+            .expect("Failed to create new array");
+        // let public_key_bytes: [u8; PUBLIC_KEY_LENGTH] = public_key_array;
+        // println!("public_key_bytes.len {:?}",public_key_bytes.len());
 
-        
-    //     let message: &[u8] = b"53fb655cc23c4fccd5dba9d8be70bc46662cd7aaf7c22f5cf843f2919aaffd64290c8b14409f78bf6aab4aad985e7c5524bc2e7bf1f7663404ea628576ac4119";
-    //     let decoded_verifying_key: VerifyingKey = deserialize(&encoded_verifying_key.as_bytes()).unwrap();
-    //     let decoded_signature: Signature = deserialize(&encoded_signature.as_bytes()).unwrap();
-    //     let verified: bool = decoded_verifying_key.verify(&message, &decoded_signature).is_ok();
-    //     println!("Result {:?} ", verified);
-    //     verified
+        return public_key_array;
+    }
+
+    // pub fn parse_n_quad_json_ld() ->  Result<String, Box<dyn Error>>{
+    //     let turtle = r#"
+    //             <http://localhost/ex#me> <http://example.org/ns/knows> _:b1.
+    //             _:b1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/ns/Person> <tag:g1>.
+    //             _:b1 <http://example.org/ns/name> "Alice" <tag:g1>.
+    //         "#;
+    
+    //         let mut graph = FastGraph::new();
+    //         QuadParser::parse_str(turtle).add_to_graph(&mut graph)?;
+    
+    //         let mut buffer = Vec::new();
+    //         let mut serializer = jsonld::JsonLdSerializer::new(&mut buffer);
+    //         serializer.serialize_graph(&graph)?;
+    
+    //         let json_ld = String::from_utf8(buffer)?;
+    //         print!("json {:?}", json_ld);
+    //         Ok(json_ld)
     // }
 
-    pub fn test(public_key_str: &str,  m:  &str, signature_str1: &str, algorithm: Algorithm, private_key_str: &str) {
+    pub fn test(public_key_str: &str,  m:  &str, signature_str1: &str, private_key_str: &str) {
         
         // message
         // m = "abcd";
+        // parse_n_quad_json_ld();
+
         let hex_decode_message = hex::decode(m);
         let message: &[u8] = &hex_decode_message.unwrap();
     
@@ -163,10 +177,16 @@ pub mod ed25519_test {
         println!("signature_bytes {:?}", signature_bytes.len()); 
         let signature_array = vec_to_array::<SIGNATURE_BYTE_SIZE>(signature_bytes.to_owned()).unwrap();        
         println!("signature_str1_len {:?}", signature_array.len());
-        let signature: Signature = Signature::from_bytes(&signature_array);
-        let verifying_key: ed25519_dalek::VerifyingKey = generate_verifying_key(&public_key_str);
 
-        let res1 = verifying_key.verify(&message, &signature).is_ok();
-        println!("result1 {:?}", res1);
+
+        let public_key = generate_verifying_key1(public_key_str);
+        let result = ed25519_verify(message, &signature_array, &public_key);
+        println!("result1 {:?}", result);
+
+        // let signature: Signature = Signature::from_bytes(&signature_array);
+        // let verifying_key: ed25519_dalek::VerifyingKey = generate_verifying_key(&public_key_str);
+
+        // let res1 = verifying_key.verify(&message, &signature).is_ok();
+        // println!("result1 {:?}", res1);
     }
 }

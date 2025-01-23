@@ -168,14 +168,11 @@ pub mod exec_donation {
     }
 
     pub fn deploy_nft_contract(deps: DepsMut, info: MessageInfo, env: Env, token_code_id: u64) -> StdResult<Response> {
-
-        // let new_sub_msg = SubMsg::reply_always(WasmMsg::Instantiate {
-        //     code_id: 14,
-        //     msg: to_binary(&nft_instantiate_message)?,
-        //     funds: vec![],
-        //     admin: Some(info.sender.to_string()),
-        //     label: "HypersignNFT-".to_string() + env.contract.address.as_str(),
-        // }, 1);
+                
+        // let withdraw_msg = SubMsg::reply_on_success(
+        //     withdraw_msg,
+        //     WITHDRAW_REPLY_ID
+        //   );
         let sub_msg: Vec<SubMsg> = vec![SubMsg {
             msg: WasmMsg::Instantiate {
                 code_id: token_code_id,
